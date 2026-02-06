@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Earl | Portfolio</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#ffffff;
+      --section:#f5f5f5;
+      --card:#ffffff;
+      --text:#111111;
+      --muted:#6b6b6b;
+      --border:#e5e5e5;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Inter', sans-serif;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+
+    /* NAVBAR */
+    nav{
+      position:fixed;
+      top:0;
+      width:100%;
+      padding:18px 8%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      background:rgba(255,255,255,0.92);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--border);
+      z-index:1000;
+    }
+
+    nav h1{
+      font-size:1.4rem;
+      font-weight:800;
+      letter-spacing:1px;
+    }
+
+    nav ul{
+      list-style:none;
+      display:flex;
+      gap:28px;
+    }
+
+    nav ul li a{
+      text-decoration:none;
+      color:var(--text);
+      font-weight:500;
+      opacity:0.7;
+      transition:0.3s;
+    }
+
+    nav ul li a:hover{
+      opacity:1;
+    }
+
+    /* SECTIONS */
+    section{
+      padding:120px 8% 80px;
+      max-width:1400px;
+      margin:auto;
+    }
+
+    section.alt{
+      background:var(--section);
+      border-radius:40px;
+      margin-top:60px;
+    }
+
+    h2{
+      font-size:2.2rem;
+      font-weight:800;
+      margin-bottom:20px;
+    }
+
+    p{
+      color:var(--muted);
+      max-width:720px;
+    }
+
+    /* HERO */
+    .hero{
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+    }
+
+    .hero img{
+      width:200px; /* adjust size as needed */
+      height:200px; 
+      border-radius:50%; /* make it circular */
+      object-fit:cover;
+      margin-bottom:20px;
+      border:4px solid var(--text);
+    }
+
+    .hero h2{
+      font-size:3rem;
+      max-width:650px;
+    }
+
+    .hero span{
+      display:block;
+      margin-top:14px;
+      color:var(--muted);
+      font-size:1rem;
+    }
+
+    /* GRID */
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:20px;
+      margin-top:30px;
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      padding:26px;
+      border-radius:20px;
+      transition:all 0.3s ease;
+    }
+
+    .card:hover{
+      transform:translateY(-6px);
+      box-shadow:0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    .card h3{
+      margin-bottom:10px;
+      font-size:1.1rem;
+    }
+
+    /* BUTTON INSIDE CARD */
+    .card .learn-more-btn{
+      display:inline-block;
+      margin-top:16px;
+      padding:10px 28px;
+      border-radius:25px;
+      border:1px solid var(--text);
+      color:var(--text);
+      text-decoration:none;
+      font-weight:600;
+      transition:all 0.3s ease;
+    }
+
+    .card .learn-more-btn:hover{
+      background:var(--text);
+      color:#fff;
+    }
+
+    /* SKILLS */
+    .skills-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:24px;
+      margin-top:40px;
+    }
+
+    .skill-card{
+      position:relative;
+      background:var(--card);
+      border:1px solid var(--border);
+      padding:28px;
+      border-radius:22px;
+      transition:all 0.35s ease;
+      overflow:hidden;
+    }
+
+    .skill-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(135deg,#000,#666);
+      opacity:0;
+      transition:0.35s;
+      z-index:0;
+    }
+
+    .skill-card:hover::before{
+      opacity:0.04;
+    }
+
+    .skill-card:hover{
+      transform:translateY(-8px);
+      box-shadow:0 20px 40px rgba(0,0,0,0.12);
+    }
+
+    .skill-card h3{
+      font-size:1.15rem;
+      font-weight:700;
+      margin-bottom:14px;
+      position:relative;
+      z-index:1;
+    }
+
+    .skill-tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      position:relative;
+      z-index:1;
+    }
+
+    .skill-tag{
+      font-size:0.85rem;
+      padding:8px 14px;
+      border-radius:20px;
+      border:1px solid var(--border);
+      background:#fafafa;
+      color:#111;
+      transition:all 0.3s ease;
+    }
+
+    .skill-card:hover .skill-tag{
+      background:#111;
+      color:#fff;
+      border-color:#111;
+    }
+
+    /* CONTACT */
+    .contact a{
+      display:inline-block;
+      margin-top:24px;
+      padding:14px 34px;
+      border-radius:30px;
+      border:1px solid var(--text);
+      color:var(--text);
+      text-decoration:none;
+      font-weight:600;
+      transition:all 0.3s ease;
+    }
+
+    .contact a:hover{
+      background:var(--text);
+      color:#fff;
+    }
+
+    /* MOBILE */
+    @media(max-width:768px){
+      nav ul{
+        gap:16px;
+      }
+
+      .hero h2{
+        font-size:2.2rem;
+      }
+
+      .hero img{
+        width:150px;
+        height:150px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+ <nav>
+  <a href="#about">
+    <img src="logo1.png" alt="Earl Logo" style="height:50px;">
+  </a>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="about">
+    <img src="2x2.jpg" alt="Earl's Picture">
+    <div>
+      <h2>Hi, I'm Earl!</h2>
+      <span>Web Developer • IT Support Specialist</span>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" class="alt">
+    <h2>Education</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>BS Information Technology – Web & Mobile Applications</h3>
+        <p>NU Baliwag (2021–2025)<br>Top Performing Student – System Integration & Architecture</p>
+      </div>
+      <div class="card">
+        <h3>STEM Strand</h3>
+        <p>Marian College of Baliuag (2019–2021)<br>With Honors</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills-grid">
+
+      <div class="skill-card">
+        <h3>Web & Mobile Development</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">HTML</span>
+          <span class="skill-tag">CSS</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">PHP</span>
+          <span class="skill-tag">React</span>
+          <span class="skill-tag">Bootstrap</span>
+          <span class="skill-tag">Flutter</span>
+          <span class="skill-tag">Firebase</span>
+          <span class="skill-tag">Java</span>
+          <span class="skill-tag">SQL / MySQL</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <h3>UI / UX & Design</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Figma</span>
+          <span class="skill-tag">Lunacy</span>
+          <span class="skill-tag">Canva</span>
+          <span class="skill-tag">Wireframing</span>
+          <span class="skill-tag">Prototyping</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <h3>Networking & Security</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Sophos Firewall</span>
+          <span class="skill-tag">Cisco Meraki</span>
+          <span class="skill-tag">IP Addressing</span>
+          <span class="skill-tag">Subnetting</span>
+          <span class="skill-tag">VLAN</span>
+          <span class="skill-tag">Network Cabling</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <h3>IT Support & Systems</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Installation</span>
+          <span class="skill-tag">Maintenance</span>
+          <span class="skill-tag">Desktops</span>
+          <span class="skill-tag">Laptops</span>
+          <span class="skill-tag">Printers</span>
+          <span class="skill-tag">Routers</span>
+          <span class="skill-tag">Servers</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <h3>Operating Systems</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Windows</span>
+          <span class="skill-tag">Linux</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <h3>Remote Tools</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">AnyDesk</span>
+          <span class="skill-tag">TeamViewer</span>
+          <span class="skill-tag">TightVNC</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="alt">
+    <h2>Career History, Internship, & Projects (Web & App Development)</h2>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Freelance</h3>
+        <a href="freelance.html" class="learn-more-btn">Learn More</a>
+      </div>
+
+      <div class="card">
+        <h3>Intern / OJT</h3>
+        <a href="ojt.html" class="learn-more-btn">Learn More</a>
+      </div>
+
+      <div class="card">
+        <h3>Projects</h3>
+        <a href="proj.html" class="learn-more-btn">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+
+<!-- CONTACT -->
+<section id="contact" class="contact" style="background-color: #f6f9fb; padding: 60px 20px; font-family: Arial, sans-serif;">
+  <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+    <h2 style="font-size: 36px; color: #333; margin-bottom: 20px;">Send Us a Message</h2>
+
+
+    <!-- CONTACT INFO & MAP -->
+    <div class="contact-info" style="margin-top: 40px; text-align: center;">
+      <p style="font-size: 16px; color: #000000;">Or contact directly: 0991-254-9549 | Tarcan, Baliwag, Bulacan</p>
+      <a href="mailto:earlcdamian@gmail.com" style="color: #007bff; font-weight: bold; text-decoration: none;">earlcdamian@gmail.com</a>
+    </div>
+
+    <div class="contact-map" style="margin-top: 30px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.482893337133!2d120.86395727486112!3d14.905445289679388!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397d97a25e9d1c7%3A0xceda5f0c1b4e5a56!2sTarcan%2C%20Baliwag%2C%20Bulacan!5e0!3m2!1sen!2sph!4v1707089921234!5m2!1sen!2sph" 
+        width="100%" 
+        height="300" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+
+
+
+</body>
+</html>
